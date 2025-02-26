@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "gridenc"
+version = "0.1.0"
+authors = [
+  { name="Saptak De", email="saptak1234hehe@gmail.com" },
+]
+description = "A package to Encrypt and Decrypt a string through grid manipulation"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://github.com/sdacard2008/gridenc"
+Issues = "https://github.com/sdcard2008/gridenc/issues"
