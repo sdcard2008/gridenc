@@ -32,18 +32,20 @@ def get_index(grid, value):
             return [row_index, col_index]
     return None
 
-def grid_enc(encstr:str , grid , combine_prompt:str): #prompt format : [char_num] prompt1 [char_num] prompt_2 .... 
+def grid_enc(encstr:str , grid , combine_prompt = None): #prompt format : [char_num] prompt1 [char_num] prompt_2 .... 
     save_grid = grid
     encoded_str_raw = []
-    prompt_arr = combine_prompt.split(" ")
-    prompt_dict = {}
-    
-    for index in range(0 , len(prompt_arr) , 2):
-        prompt_dict[prompt_arr[index]] = prompt_arr[index+1]
+    if combine_prompt is not None:
+        prompt_arr = combine_prompt.split(" ")
+        prompt_dict = {}
+        
+        for index in range(0 , len(prompt_arr) , 2):
+            prompt_dict[prompt_arr[index]] = prompt_arr[index+1]
     
     for ind,j in enumerate(encstr):
-        if str(ind) in prompt_dict.keys():
-             save_grid = grid_shift(save_grid , prompt_dict[str(ind)])
+        if combine_prompt is not None:    
+            if str(ind) in prompt_dict.keys():
+                 save_grid = grid_shift(save_grid , prompt_dict[str(ind)])
         val_index = get_index(save_grid , j)
         if val_index == None:
             return "Something went wrong"
@@ -52,22 +54,23 @@ def grid_enc(encstr:str , grid , combine_prompt:str): #prompt format : [char_num
         
          
     return " ".join(encoded_str_raw)
-def grid_dec(decstr_raw:str , grid ,combine_prompt:str): 
+def grid_dec(decstr_raw:str , grid ,combine_prompt = None): 
     save_grid = grid
     decstr = decstr_raw.split(" ")
     decoded_str = ""
-    prompt_arr = combine_prompt.split(" ")
-    prompt_dict = {}
-    
-    for index in range(0 , len(prompt_arr) , 2):
-        prompt_dict[prompt_arr[index]] = prompt_arr[index+1]
+    if combine_prompt is not None:
+        prompt_arr = combine_prompt.split(" ")
+        prompt_dict = {}
+        
+        for index in range(0 , len(prompt_arr) , 2):
+            prompt_dict[prompt_arr[index]] = prompt_arr[index+1]
     
     
     for l,i in zip(range(0 , len(decstr) , 2) , range(int(len(decstr)/2))):
         
-        
-        if str(i) in prompt_dict.keys():
-                save_grid = grid_shift(save_grid , prompt_dict[str(i)])
+        if combine_prompt is not None:
+            if str(i) in prompt_dict.keys():
+                    save_grid = grid_shift(save_grid , prompt_dict[str(i)])
             
         decoded_str = decoded_str +  save_grid[int(decstr[l])][int(decstr[l+1])]
     return decoded_str

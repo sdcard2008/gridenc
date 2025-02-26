@@ -17,5 +17,5 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sdacard2008/gridenc"
+Homepage = "https://github.com/sdcard2008/gridenc"
 Issues = "https://github.com/sdcard2008/gridenc/issues"
