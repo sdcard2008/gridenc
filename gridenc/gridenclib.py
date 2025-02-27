@@ -1,9 +1,10 @@
 import string as __string
 import random as __random
 CHARACTERS = __string.ascii_letters + __string.punctuation + __string.digits + __string.whitespace
-char_array = list(CHARACTERS)
+
 
 def init_grid(width:int , seed:int):
+    char_array = list(CHARACTERS)
     if len(char_array) % width != 0:
         raise Exception("Num of characters not divisible by width. Try something else")
         
