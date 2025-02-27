@@ -7,3 +7,4 @@ dist/
 *.egg-info/
 .pytest_cache/
 */__pycache__/
+test/rough.py
